@@ -13,7 +13,6 @@
 #include <Output.h>
 #include <Config.h>
 
-void fakeSymbol();
 
 namespace Log {
 

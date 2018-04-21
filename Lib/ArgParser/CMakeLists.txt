@@ -17,7 +17,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 
 set(SRC_FILES
         ${PROJECT_SOURCE_DIR}/Includes/ArgParser.h
-        ${PROJECT_SOURCE_DIR}/Sources/Config.cpp
+        ${PROJECT_SOURCE_DIR}/Sources/ArgParser.cpp
 )
 
 # build executable

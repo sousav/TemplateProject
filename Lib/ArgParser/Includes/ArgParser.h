@@ -50,6 +50,7 @@
 #include <utility>
 #include <vector>
 
+void fakeSymbol();
 
 /**
  * @brief

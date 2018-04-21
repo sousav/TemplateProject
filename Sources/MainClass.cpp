@@ -3,18 +3,11 @@
  * @Date:   18/04/2018 14:17:52
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 20/04/2018 16:43:02
+ * @Last modified time: 21/04/2018 04:05:21
  */
 
 
 #include "MainClass.h"
-#include <vector>
-
-bool CreatorCpp_console(std::string const &name, std::string const &path) {
-    std::cout << "Project name: " << name << std::endl;
-    std::cout << KYEL << "still need to load creator using dynamic library" << KNRM << std::endl;
-    return true;
-}
 
 MainClass::MainClass(int argc, char *argv[]): AMain(argc, argv, "MainClass") {
 
@@ -49,9 +42,10 @@ bool MainClass::Run(ArgParser::parser_results const &args) {
         project_path = args["project_path"].as<std::string>();
     }
 
-    std::map<std::string, std::function<bool(std::string const &, std::string const&)>>::iterator it = this->_creators.find(project_type);
+
+    std::map<std::string, std::shared_ptr<ICreator>>::iterator it = this->_creators.find(project_type);
     if (it != this->_creators.end()) {
-        this->_creators[project_type](project_name, project_path);
+        this->logger.notice() << this->_creators[project_type]->getName();
     } else {
         ArgParser::fmt_ostream(std::cerr) << KRED + "\n\"" + project_type + "\" is not a valid project type" + KNRM << std::endl << this->SetupArgParser();
     }
@@ -66,7 +60,10 @@ bool MainClass::checkArgument(ArgParser::parser_results const &args) const {
     }
 
     if (args["list_type"]) {
-        std::cerr << "Possible project type:" << std::endl;
+        this->logger.info() << "Possible project type:";
+        for (auto const &e: this->_creators) {
+            this->logger.info() << e.first;
+        }
         return false;
     }
 
@@ -82,5 +79,5 @@ bool MainClass::checkArgument(ArgParser::parser_results const &args) const {
 }
 
 void MainClass::registerCreators() {
-    this->_creators["C++_console"] = &CreatorCpp_console;
+    this->_creators = CreatorLoader().withPath("./Creators").withExtension("*.so").run().getCreators();
 }

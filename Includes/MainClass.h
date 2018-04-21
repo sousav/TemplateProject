@@ -3,7 +3,7 @@
  * @Date:   18/04/2018 14:15:33
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 19/04/2018 00:08:24
+ * @Last modified time: 21/04/2018 03:56:26
  */
 
 
@@ -12,6 +12,8 @@
 
 #include <boost/filesystem.hpp>
 #include "AMain.h"
+#include "ICreator.h"
+#include "CreatorLoader.h"
 
 class MainClass : public AMain {
 
@@ -28,7 +30,7 @@ private:
     void registerCreators();
 
 private:
-    std::map<std::string, std::function<bool(std::string const &, std::string const&)>> _creators;
+    std::map<std::string, std::shared_ptr<ICreator>> _creators;
 
 };
 
