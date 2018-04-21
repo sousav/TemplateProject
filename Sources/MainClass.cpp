@@ -3,7 +3,7 @@
  * @Date:   18/04/2018 14:17:52
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 21/04/2018 04:05:21
+ * @Last modified time: 21/04/2018 15:16:12
  */
 
 
@@ -45,12 +45,12 @@ bool MainClass::Run(ArgParser::parser_results const &args) {
 
     std::map<std::string, std::shared_ptr<ICreator>>::iterator it = this->_creators.find(project_type);
     if (it != this->_creators.end()) {
-        this->logger.notice() << this->_creators[project_type]->getName();
+        return this->_creators[project_type]->createProject(project_name, project_path, args);
     } else {
         ArgParser::fmt_ostream(std::cerr) << KRED + "\n\"" + project_type + "\" is not a valid project type" + KNRM << std::endl << this->SetupArgParser();
     }
 
-    return true;
+    return false;
 }
 
 bool MainClass::checkArgument(ArgParser::parser_results const &args) const {

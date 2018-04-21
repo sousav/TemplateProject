@@ -9,16 +9,23 @@ list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 ## Find required library
 find_package(Boost REQUIRED COMPONENTS system filesystem regex)
 
+## Setup Embeded file library
+if (NOT TARGET embed-resource)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/Lib/embed-resource/)
+    include_directories(${PROJECT_SOURCE_DIR}/Lib/embed-resource/)
+endif()
 
 ## Setup Logger library
 if (NOT TARGET Logger)
     add_subdirectory(${PROJECT_SOURCE_DIR}/Lib/Logger)
+    include_directories(${PROJECT_SOURCE_DIR}/Lib/Logger/Includes/)
 endif()
-include_directories(${PROJECT_SOURCE_DIR}/Lib/Logger/Includes/)
 
 ## Setup Argument parsing library
-add_subdirectory(${PROJECT_SOURCE_DIR}/Lib/ArgParser)
-include_directories(${PROJECT_SOURCE_DIR}/Lib/ArgParser/Includes/)
+if (NOT TARGET ArgParser)
+    add_subdirectory(${PROJECT_SOURCE_DIR}/Lib/ArgParser)
+    include_directories(${PROJECT_SOURCE_DIR}/Lib/ArgParser/Includes/)
+endif()
 
 
 ## Setup the source files
@@ -40,6 +47,9 @@ set(Sources
     ${PROJECT_SOURCE_DIR}/Sources/CreatorLoader.cpp
 )
 
+## Setup common creator Include
+include_directories(${CMAKE_SOURCE_DIR}/Creators/Common/Includes)
+
 ## Setup default include path
 include_directories(
         ${PROJECT_SOURCE_DIR}/Includes/
@@ -53,8 +63,6 @@ link_directories(
 ## Create executables
 add_executable(${NAME} ${Sources})
 
-## Setup common creator sources
-include(${CMAKE_SOURCE_DIR}/Creators/Common/Common.cmake)
 
 ## Setup used library
 target_link_libraries(${NAME}

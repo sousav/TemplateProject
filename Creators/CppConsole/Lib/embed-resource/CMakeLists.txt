@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(EmbedResource)
+project(embed-resource)
 
 function(embed_resources out_var)
     set(result)
