@@ -1175,8 +1175,9 @@ parser_results parser::parse(int argc, const char** argv) const
 
       if (!map.known_long_flag(long_flag_str)) {
         std::ostringstream msg;
-        msg << "found unexpected flag: " << long_flag_str;
-        throw unexpected_option_error(msg.str());
+        //msg << "found unexpected flag: " << long_flag_str;
+        //throw unexpected_option_error(msg.str());
+        continue;
       }
 
       const auto defn = map.get_definition_for_long_flag(long_flag_str);
@@ -1231,9 +1232,10 @@ parser_results parser::parse(int argc, const char** argv) const
 
       if (!map.known_short_flag(short_flag)) {
         std::ostringstream msg;
-        msg << "found unexpected flag '" << arg_i_cstr[sf_idx]
-            << "' in flag group '" << arg_i_cstr << "'";
-        throw unexpected_option_error(msg.str());
+        //msg << "found unexpected flag '" << arg_i_cstr[sf_idx]
+            //<< "' in flag group '" << arg_i_cstr << "'";
+        //throw unexpected_option_error(msg.str());
+        continue;
       }
 
       auto defn = map.get_definition_for_short_flag(short_flag);

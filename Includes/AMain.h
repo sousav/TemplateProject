@@ -3,7 +3,7 @@
  * @Date:   18/04/2018 19:22:41
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 21/04/2018 03:56:16
+ * @Last modified time: 21/04/2018 22:36:48
  */
 
 
@@ -23,9 +23,9 @@ public:
     virtual bool Run(ArgParser::parser_results const &args) = 0;
 
 protected:
-    virtual ArgParser::parser SetupArgParser() const = 0;
+    virtual ArgParser::parser setupArgParser() const = 0;
 
-private:
+protected:
     int _argc;
     char **_argv;
 

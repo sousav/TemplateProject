@@ -3,7 +3,7 @@
  * @Date:   18/04/2018 14:17:52
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 21/04/2018 15:16:12
+ * @Last modified time: 21/04/2018 22:37:21
  */
 
 
@@ -18,7 +18,7 @@ MainClass::~MainClass() {
 }
 
 
-ArgParser::parser MainClass::SetupArgParser() const {
+ArgParser::parser MainClass::setupArgParser() const {
     return ArgParser::parser {{
         { "help", {"-h", "--help"}, "Shows this help message.\n", 0},
         { "project_name", {"-n", "--name"}, KRED + "[requiered]" + KNRM + " Specify the project name.\n", 1},
@@ -45,9 +45,9 @@ bool MainClass::Run(ArgParser::parser_results const &args) {
 
     std::map<std::string, std::shared_ptr<ICreator>>::iterator it = this->_creators.find(project_type);
     if (it != this->_creators.end()) {
-        return this->_creators[project_type]->createProject(project_name, project_path, args);
+        return this->_creators[project_type]->createProject(project_name, project_path, this->_argc, this->_argv);
     } else {
-        ArgParser::fmt_ostream(std::cerr) << KRED + "\n\"" + project_type + "\" is not a valid project type" + KNRM << std::endl << this->SetupArgParser();
+        ArgParser::fmt_ostream(std::cerr) << KRED + "\n\"" + project_type + "\" is not a valid project type" + KNRM << std::endl << this->setupArgParser();
     }
 
     return false;
@@ -55,7 +55,7 @@ bool MainClass::Run(ArgParser::parser_results const &args) {
 
 bool MainClass::checkArgument(ArgParser::parser_results const &args) const {
     if (args["help"]) {
-        ArgParser::fmt_ostream(std::cerr) << "Usage:" << std::endl << this->SetupArgParser();
+        ArgParser::fmt_ostream(std::cerr) << "Usage:" << std::endl << this->setupArgParser();
         return false;
     }
 
@@ -68,11 +68,11 @@ bool MainClass::checkArgument(ArgParser::parser_results const &args) const {
     }
 
     if (!args["project_name"]) {
-        ArgParser::fmt_ostream(std::cerr) << KRED + "\nYou must provide a project name using -n or --name\n" + KNRM << std::endl << this->SetupArgParser();
+        ArgParser::fmt_ostream(std::cerr) << KRED + "\nYou must provide a project name using -n or --name\n" + KNRM << std::endl << this->setupArgParser();
         return false;
     }
     if (!args["project_type"]) {
-        ArgParser::fmt_ostream(std::cerr) << KRED + "\nYou must provide a project type -t or --type\n" + KNRM << std::endl << this->SetupArgParser();
+        ArgParser::fmt_ostream(std::cerr) << KRED + "\nYou must provide a project type -t or --type\n" + KNRM << std::endl << this->setupArgParser();
         return false;
     }
     return true;

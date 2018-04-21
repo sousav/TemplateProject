@@ -3,7 +3,7 @@
  * @Date:   21/04/2018 01:14:02
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 21/04/2018 17:19:13
+ * @Last modified time: 21/04/2018 22:37:54
  */
 
 
@@ -25,17 +25,32 @@ std::string const &ACreator::getName() const {
     return this->_name;
 }
 
-bool ACreator::createProject(std::string const &name, std::string const &path, ArgParser::parser_results const &args) {
-    if (!createDestination(path)) {
+bool ACreator::createProject(std::string const &name, std::string const &path, int argc, char **argv) {
+    ArgParser::parser parser = this->setupArgParser();
+    ArgParser::parser_results args;
+    try {
+        args = parser.parse(argc, argv);
+    } catch (const std::exception& e) {
+        this->logger.error() << e.what();
         return false;
     }
-    if (!unzipTemplate(path)) {
+
+    if (!this->checkArgument(args)) {
         return false;
     }
+    if (!this->createDestination(path)) {
+        return false;
+    }
+    if (!this->unzipTemplate(path)) {
+        return false;
+    }
+
+    //setup keyword to replace
+
     return true;
 }
 
-bool ACreator::createDestination(std::string const &rawPath) {
+bool ACreator::createDestination(std::string const &rawPath) const {
     boost::filesystem::path path(rawPath);
 
     if (boost::filesystem::exists(path)) {
@@ -61,7 +76,7 @@ bool ACreator::createDestination(std::string const &rawPath) {
     return true;
 }
 
-bool ACreator::unzipTemplate(std::string const &rawPath) {
+bool ACreator::unzipTemplate(std::string const &rawPath) const {
     this->logger.info() << "Restoring project archive...";
     Resource text = LOAD_RESOURCE(Template_gz);
     std::ofstream outfile ("Template.gz");

@@ -3,7 +3,7 @@
  * @Date:   18/04/2018 14:15:33
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 21/04/2018 03:56:26
+ * @Last modified time: 21/04/2018 22:36:51
  */
 
 
@@ -22,7 +22,7 @@ public:
     virtual ~MainClass();
 
 protected:
-    virtual ArgParser::parser SetupArgParser() const;
+    virtual ArgParser::parser setupArgParser() const;
     virtual bool Run(ArgParser::parser_results const &args);
 
 private:
