@@ -4,7 +4,7 @@
  * @Date:   14/04/2018 18:09:05
  *
  * @Last modified by:   vicostudio
- * @Last modified time: 18/04/2018 23:34:48
+ * @Last modified time: 22/04/2018 03:11:36
  */
 
 #include <Logger/Manager.h>
@@ -23,6 +23,9 @@ int main(int argc, char *argv[]) {
     logger.notice() << "The project creator wizard.";
 
     MainClass main(argc, argv);
-    main.AMain::Run();
-
+    if (main.AMain::Run()) {
+        logger.notice() << "Project creation succeded";
+        return 0;
+    }
+    return -1;
 }
