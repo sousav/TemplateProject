@@ -1,3 +1,4 @@
+
 # Welcome to [TemplateProject](https://sousav.github.io/TemplateProject/)!
 ## The simple multi-language project creator wizard
 
@@ -33,6 +34,32 @@ Usage:
                     List all project type possibilities.
 ```
 
+# How to install
+
+After running
+```shell
+make install
+```
+you should be able to run
+```shell
+TemplateProject -h
+```
+
+<br>All installed files can be checked with
+```
+ls -LR /usr/local/bin/TemplateProject*
+````
+which should ouput the following
+```shell
+/usr/local/bin/TemplateProject
+
+/usr/local/bin/TemplateProjectCreator:
+Creators        TemplateProject
+
+/usr/local/bin/TemplateProjectCreator/Creators:
+libCppConsole.so
+```
+
 
 # How to use
 ## required
@@ -43,7 +70,7 @@ You can see that there is two required parameters:
 
 <br>You can get the list of all loaded project creator with
 ```shell
-./TemplateProject --list
+TemplateProject --list
 ```
 It should output
 ```shell
@@ -75,12 +102,12 @@ Otherwise, it will be created.**
 ## Project creation
 In order to create a C++ console project, named TestProject
 ```shell
-./TemplateProject --name TestProject --type CppConsole
+TemplateProject --name TestProject --type CppConsole
 ```
 
 <br>In order to create a C++ console project, named TestProject in your working directory
 ```shell
-./TemplateProject --name TestProject --type CppConsole --path=.
+TemplateProject --name TestProject --type CppConsole --path=.
 ```
 <br>
 
@@ -88,7 +115,15 @@ In order to create a C++ console project, named TestProject
 # Create your ProjectCreator
 
 [ProjectCreator readme](Creators)
+<br>
 
+# Used library
+- [argagg](https://github.com/vietjtnguyen/argagg)
+	C++ command line argument/option parser.
+- [LoggerCpp](https://github.com/SRombauts/LoggerCpp)
+	A simple, elegant and efficient C++ logger library.
+- [embed-resource](https://github.com/cyrilcode/embed-resource)
+	  Embed binary files and resources.
 
 # Contact Information
 
