@@ -3,7 +3,7 @@
  * @Date:   21/04/2018 01:14:01
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 22/04/2018 01:09:16
+ * @Last modified time: 22/04/2018 01:15:22
  */
 
 
@@ -28,6 +28,8 @@ private:
     virtual bool checkArgument(ArgParser::parser_results const &args) const = 0;
     bool createDestination(std::string const &path) const;
     bool unzipTemplate(std::string const &path) const;
+    virtual std::unordered_map<std::string, std::string> setupProjectKeyword(ArgParser::parser_results const &args) const = 0;
+    bool replaceKeyword(std::unordered_map<std::string, std::string> const &keyword) const;
 
 private:
     std::string _name;

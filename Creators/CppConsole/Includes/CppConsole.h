@@ -3,7 +3,7 @@
  * @Date:   21/04/2018 00:55:40
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 21/04/2018 22:36:25
+ * @Last modified time: 22/04/2018 01:14:12
  */
 
 
@@ -21,6 +21,7 @@ public:
 
     ArgParser::parser setupArgParser() const;
     bool checkArgument(ArgParser::parser_results const &args) const;
+    std::unordered_map<std::string, std::string> setupProjectKeyword(ArgParser::parser_results const &args) const;
 
 };
 
