@@ -87,7 +87,7 @@ In order to create a C++ console project, named TestProject
 
 # Create your ProjectCreator
 
-## todo readme
+[ProjectCreator readme](Creators/README.md)
 
 
 # Contact Information
