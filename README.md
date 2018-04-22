@@ -1,4 +1,4 @@
-# Welcome to TemplateProject!
+# Welcome to [TemplateProject](https://sousav.github.io/TemplateProject/)!
 ## The simple multi-language project creator wizard
 
 TemplateProject is a C++ executable designed to load any project creator as a dynamic library.
