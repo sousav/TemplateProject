@@ -64,9 +64,13 @@ target_link_libraries(${NAME}
 
 
 ## build the embeded file before building project
-add_custom_command(TARGET ${NAME} PRE_LINK COMMAND tar -cjf ${PROJECT_SOURCE_DIR}/Template.gz -C ${PROJECT_SOURCE_DIR}/Template ./ COMMENT "Compressing template project")
+add_custom_target(${NAME}CompressTemplate COMMAND rm ${PROJECT_SOURCE_DIR}/Template.gz && tar -cf ${PROJECT_SOURCE_DIR}/Template.gz -C ${PROJECT_SOURCE_DIR}/Template ./)
+
+add_dependencies(${NAME} ${NAME}CompressTemplate)
 
 ## Copy the generated library after building project
 IF(DEFINED MOVE_CREATOR_LIBRARY)
     add_custom_command(TARGET ${NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${NAME}> ${MOVE_CREATOR_LIBRARY} COMMENT "Copying ${NAME} library")
 ENDIF()
+
+add_custom_target(${NAME}BuildTemplate rm -f ${CMAKE_BINARY_DIR}/Creators/CppConsole/Template.gz.c && make CppConsole)
