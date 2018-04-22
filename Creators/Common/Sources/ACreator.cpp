@@ -3,7 +3,7 @@
  * @Date:   21/04/2018 01:14:02
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 22/04/2018 03:07:26
+ * @Last modified time: 22/04/2018 03:09:33
  */
 
 
@@ -103,6 +103,7 @@ bool ACreator::unzipTemplate(std::string const &rawPath) const {
 }
 
 bool ACreator::replaceKeyword(std::unordered_map<std::string, std::string> const &keywords) const {
+    this->logger.info() << "Setting up project...";
     for (auto const &keyword: keywords) {
         std::stringstream ss;
         ss << "find ./Test -type f -print0 | xargs -0 sed -i ''  's/{{" << keyword.first << "}}/" << keyword.second << "/g'";
