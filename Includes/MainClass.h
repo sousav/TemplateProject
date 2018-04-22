@@ -3,7 +3,7 @@
  * @Date:   18/04/2018 14:15:33
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 21/04/2018 22:36:51
+ * @Last modified time: 22/04/2018 22:07:52
  */
 
 
@@ -14,6 +14,7 @@
 #include "AMain.h"
 #include "ICreator.h"
 #include "CreatorLoader.h"
+#include "ExecutablePath.h"
 
 class MainClass : public AMain {
 
@@ -27,7 +28,7 @@ protected:
 
 private:
     bool checkArgument(ArgParser::parser_results const &args) const;
-    void registerCreators();
+    bool registerCreators();
 
 private:
     std::map<std::string, std::shared_ptr<ICreator>> _creators;

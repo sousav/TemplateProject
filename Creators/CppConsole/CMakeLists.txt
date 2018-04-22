@@ -74,3 +74,5 @@ IF(DEFINED MOVE_CREATOR_LIBRARY)
 ENDIF()
 
 add_custom_target(${NAME}BuildTemplate rm -f ${CMAKE_BINARY_DIR}/Creators/CppConsole/Template.gz.c && make CppConsole)
+
+install(TARGETS ${NAME} DESTINATION bin/TemplateProjectCreator/Creators)

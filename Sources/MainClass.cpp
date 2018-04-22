@@ -3,7 +3,7 @@
  * @Date:   18/04/2018 14:17:52
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 21/04/2018 22:37:21
+ * @Last modified time: 22/04/2018 22:08:23
  */
 
 
@@ -29,7 +29,9 @@ ArgParser::parser MainClass::setupArgParser() const {
 }
 
 bool MainClass::Run(ArgParser::parser_results const &args) {
-    this->registerCreators();
+    if (!this->registerCreators()) {
+        return false;
+    }
 
     if (!this->checkArgument(args)) {
         return false;
@@ -78,6 +80,13 @@ bool MainClass::checkArgument(ArgParser::parser_results const &args) const {
     return true;
 }
 
-void MainClass::registerCreators() {
-    this->_creators = CreatorLoader().withPath("./Creators").withExtension("*.so").run().getCreators();
+bool MainClass::registerCreators() {
+    boost::filesystem::path path(boost::executable_path(this->_argv[0]));
+    try {
+        this->_creators = CreatorLoader().withPath(path.parent_path().string() + "/Creators").withExtension("*.so").run().getCreators();
+    } catch (std::exception &e) {
+        this->logger.error() << "Could not load any creator library:\n" << e.what();
+        return false;
+    }
+    return true;
 }

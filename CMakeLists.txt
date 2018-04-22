@@ -45,6 +45,9 @@ set(Sources
 
     ${PROJECT_SOURCE_DIR}/Includes/CreatorLoader.h
     ${PROJECT_SOURCE_DIR}/Sources/CreatorLoader.cpp
+
+    ${PROJECT_SOURCE_DIR}/Includes/ExecutablePath.h
+    ${PROJECT_SOURCE_DIR}/Sources/ExecutablePath.cpp
 )
 
 ## Setup common creator Include
@@ -75,3 +78,14 @@ target_link_libraries(${NAME}
 
 SET(MOVE_CREATOR_LIBRARY ${PROJECT_BINARY_DIR}/Creators CACHE STRING "Need to mv every generated creator library")
 add_subdirectory(${PROJECT_SOURCE_DIR}/Creators/)
+
+
+## install rules
+macro(install_symlink filepath sympath)
+    install(CODE "execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${CMAKE_INSTALL_PREFIX}/bin/${filepath} ${CMAKE_INSTALL_PREFIX}/bin/${sympath})")
+    install(CODE "message(\"-- Created symlink: ${CMAKE_INSTALL_PREFIX}/bin/${sympath} -> ${CMAKE_INSTALL_PREFIX}/bin/${filepath}\")")
+endmacro(install_symlink)
+
+install(TARGETS ${NAME} DESTINATION bin/${NAME}Creator)
+install(DIRECTORY DESTINATION bin/${NAME}Creator/Creators)
+install_symlink(${NAME}Creator/${NAME} ${NAME})
