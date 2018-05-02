@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-set(NAME CppConsole)
+set(NAME {{project_name}})
 project(${NAME})
 
 set(CMAKE_CXX_STANDARD 17)
@@ -39,8 +39,8 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../Common/Common.cmake)
 ## Setup the source files
 target_sources(${NAME}
     PRIVATE
-    ${PROJECT_SOURCE_DIR}/Includes/${NAME}.h
-    ${PROJECT_SOURCE_DIR}/Sources/${NAME}.cpp
+    ${PROJECT_SOURCE_DIR}/Includes/ProjectCreator.h
+    ${PROJECT_SOURCE_DIR}/Sources/ProjectCreator.cpp
     ${Ressources}
 )
 
@@ -73,6 +73,6 @@ IF(DEFINED MOVE_CREATOR_LIBRARY)
     add_custom_command(TARGET ${NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${NAME}> ${MOVE_CREATOR_LIBRARY} COMMENT "Copying ${NAME} library")
 ENDIF()
 
-add_custom_target(${NAME}BuildTemplate rm -f ${CMAKE_BINARY_DIR}/Creators/CppConsole/Template.gz.c && make CppConsole)
+add_custom_target(${NAME}BuildTemplate rm -f ${CMAKE_BINARY_DIR}/Creators/{{project_name}}/Template.gz.c && make {{project_name}})
 
-install(TARGETS ${NAME} DESTINATION bin/TemplateProjectCreator/Creators)
+install(TARGETS ${NAME} DESTINATION bin/Template{{project_name}}/Creators)

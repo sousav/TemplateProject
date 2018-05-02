@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.9)
 
-set(NAME CppConsole)
+set(NAME ProjectCreator)
 project(${NAME})
 
 set(CMAKE_CXX_STANDARD 17)
@@ -73,6 +73,6 @@ IF(DEFINED MOVE_CREATOR_LIBRARY)
     add_custom_command(TARGET ${NAME} POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${NAME}> ${MOVE_CREATOR_LIBRARY} COMMENT "Copying ${NAME} library")
 ENDIF()
 
-add_custom_target(${NAME}BuildTemplate rm -f ${CMAKE_BINARY_DIR}/Creators/CppConsole/Template.gz.c && make CppConsole)
+add_custom_target(${NAME}BuildTemplate rm -f ${CMAKE_BINARY_DIR}/Creators/ProjectCreator/Template.gz.c && make ProjectCreator)
 
 install(TARGETS ${NAME} DESTINATION bin/TemplateProjectCreator/Creators)

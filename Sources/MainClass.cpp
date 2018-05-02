@@ -3,7 +3,7 @@
  * @Date:   18/04/2018 14:17:52
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 22/04/2018 22:08:23
+ * @Last modified time: 29/04/2018 20:00:48
  */
 
 
@@ -21,8 +21,8 @@ MainClass::~MainClass() {
 ArgParser::parser MainClass::setupArgParser() const {
     return ArgParser::parser {{
         { "help", {"-h", "--help"}, "Shows this help message.\n", 0},
-        { "project_name", {"-n", "--name"}, KRED + "[requiered]" + KNRM + " Specify the project name.\n", 1},
-        { "project_type", {"-t", "--type"}, KRED + "[requiered]" + KNRM + " Specify the project type.\n", 1},
+        { "project_name", {"-n", "--name"}, KRED + "[required]" + KNRM + " Specify the project name.\n", 1},
+        { "project_type", {"-t", "--type"}, KRED + "[required]" + KNRM + " Specify the project type.\n", 1},
         { "project_path", {"-p", "--path"}, "            Specify the path where the project must be created." + KYEL + "\n\tdefault: \"./name\"\n" + KNRM, 1},
         { "list_type", {"-l", "--list"}, "            List all project type possibilities.\n", 0}
     }};
