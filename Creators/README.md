@@ -69,7 +69,7 @@ Every  {{version}}  will be replaced by the version specified during the templat
 
 If your Templates README.md contains:
 ```text
-# {{project_name}}, version: {{version}}
+# { {project_name} }, version: { {version} }
 ```
 
 Executing :
