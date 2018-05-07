@@ -30,7 +30,6 @@ ArgParser::parser YourCreatorName::setupArgParser() const {
         { "project_type", {"-t", "--type"}, KRED + "[requiered]" + KNRM + " Specify the project type.\n", 1},
         { "project_path", {"-p", "--path"}, "            Specify the path where the project must be created." + KYEL + "\n\tdefault: \"./name\"\n" + KNRM, 1},
         { "list_type", {"-l", "--list"}, "            List all project type possibilities.\n", 0},
-
         { "version", {"-v", "--version"}, KRED + "[requiered]" + KNRM + " Specify the project version.\n", 1}
     }};
 }
