@@ -22,7 +22,7 @@ cmake .. && make
 ```
 
 ## 3) As an example we will add a custom parameter named "version".
-```cpp
+```text
 ArgParser::parser YourCreatorName::setupArgParser() const {
     return ArgParser::parser {{
         { "help", {"-h", "--help"}, "Shows this help message.\n", 0},
