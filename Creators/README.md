@@ -22,17 +22,16 @@ cmake .. && make
 ```
 
 ## 3) As an example we will add a custom parameter named "version".
-```cpp
+```
 ArgParser::parser YourCreatorName::setupArgParser() const {
-    return ArgParser::parser {{
+    return ArgParser::parser { {
         { "help", {"-h", "--help"}, "Shows this help message.\n", 0},
-        { "project_name", {"-n", "--name"}, KRED + "[requiered]" + KNRM + " Specify the project name.\n", 1},
-        { "project_type", {"-t", "--type"}, KRED + "[requiered]" + KNRM + " Specify the project type.\n", 1},
-        { "project_path", {"-p", "--path"}, "            Specify the path where the project must be created." + KYEL + "\n\tdefault: \"./name\"\n" + KNRM, 1},
-        { "list_type", {"-l", "--list"}, "            List all project type possibilities.\n", 0},
-
-        { "version", {"-v", "--version"}, KRED + "[requiered]" + KNRM + " Specify the project version.\n", 1},
-    }};
+	{ "project_name", {"-n", "--name"}, KRED + "[requiered]" + KNRM + " Specify the project name.\n", 1},
+	{ "project_type", {"-t", "--type"}, KRED + "[requiered]" + KNRM + " Specify the project type.\n", 1},
+	{ "project_path", {"-p", "--path"}, "            Specify the path where the project must be created." + KYEL + "\n\tdefault: \"./name\"\n" + KNRM, 1},
+	{ "list_type", {"-l", "--list"}, "            List all project type possibilities.\n", 0},
+	{ "version", {"-v", "--version"}, KRED + "[requiered]" + KNRM + " Specify the project version.\n", 1}
+    } };
 }
 ```
 
@@ -70,7 +69,7 @@ Every  {{version}}  will be replaced by the version specified during the templat
 
 If your Templates README.md contains:
 ```text
-# {{project_name}}, version: {{version}}
+# { {project_name} }, version: { {version} }
 ```
 
 Executing :
