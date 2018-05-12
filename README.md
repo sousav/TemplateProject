@@ -76,6 +76,8 @@ It should output
 ```shell
 2018-04-22 19:01:32.559  MainClass    INFO Possible project type:
 2018-04-22 19:01:32.559  MainClass    INFO CppConsole
+2018-04-22 19:01:32.559  MainClass    INFO CppLibrary
+2018-04-22 19:01:32.559  MainClass    INFO CppSharedLibrary
 2018-04-22 19:01:32.559  MainClass    INFO ProjectCreator
 ```
 This means the TemplateProject executable found the library CppConsole.
