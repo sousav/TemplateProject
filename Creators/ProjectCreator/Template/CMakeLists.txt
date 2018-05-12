@@ -75,4 +75,4 @@ ENDIF()
 
 add_custom_target(${NAME}BuildTemplate rm -f ${CMAKE_BINARY_DIR}/Creators/{{project_name}}/Template.gz.c && make {{project_name}})
 
-install(TARGETS ${NAME} DESTINATION bin/Template{{project_name}}/Creators)
+install(TARGETS ${NAME} DESTINATION bin/TemplateProjectCreator/Creators)

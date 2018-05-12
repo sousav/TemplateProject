@@ -3,7 +3,7 @@
  * @Date:   18/04/2018 14:17:52
  * @Email:  victor.sousa@epitech.eu
  * @Last modified by:   vicostudio
- * @Last modified time: 29/04/2018 20:00:48
+ * @Last modified time: 07/05/2018 11:05:24
  */
 
 
@@ -27,6 +27,7 @@ ArgParser::parser MainClass::setupArgParser() const {
         { "list_type", {"-l", "--list"}, "            List all project type possibilities.\n", 0}
     }};
 }
+
 
 bool MainClass::Run(ArgParser::parser_results const &args) {
     if (!this->registerCreators()) {
